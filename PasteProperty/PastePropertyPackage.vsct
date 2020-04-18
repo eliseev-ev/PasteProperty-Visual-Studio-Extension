@@ -84,9 +84,26 @@
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
         <Strings>
-          <ButtonText>Convert to: _privateField</ButtonText>
+          <ButtonText>Convert to: _privateField</ButtonText>      
         </Strings>
       </Button>
+      
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue1Command" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="privateField" />
+        <Strings>
+          <ButtonText>Copy 1</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPasteFieldCommand" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="privateField" />
+        <Strings>
+          <ButtonText>Paste</ButtonText>
+        </Strings>
+      </Button>
+      
 
     </Buttons>  
     
@@ -105,6 +122,8 @@
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPropertyCommand" key1="Q" mod1="ALT" editor="guidVSStd97" />
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToFieldCommand" key1="W" mod1="ALT" editor="guidVSStd97" />
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPrivateFieldCommand" key1="E" mod1="ALT" editor="guidVSStd97" />
+
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue1Command" key1="C" key2="1" mod1="ALT"  editor="guidVSStd97"  />
   </KeyBindings>
 
 
@@ -122,6 +141,9 @@
       <IDSymbol value="4129" name="cmdidConvertSelectedToPropertyCommand" />
       <IDSymbol value="4130" name="cmdidConvertSelectedToFieldCommand" />
       <IDSymbol value="4131" name="cmdidConvertSelectedToPrivateFieldCommand" />
+      <IDSymbol value="4132" name="cmdidCopyValue1Command" />
+
+      <IDSymbol value="4140" name="cmdidPasteFieldCommand" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{fad06ec7-7d39-4385-85f8-a380cea032b2}">

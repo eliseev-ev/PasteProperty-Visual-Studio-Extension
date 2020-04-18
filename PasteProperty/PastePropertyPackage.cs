@@ -1,7 +1,10 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio.Shell;
+
+using PasteProperty.ValueRepository;
 using Task = System.Threading.Tasks.Task;
 
 namespace PasteProperty
@@ -35,6 +38,8 @@ namespace PasteProperty
 
         #region Package Members
 
+        IValueRepository _valueRepository = new ValueRepository.ValueRepository();
+
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
@@ -50,7 +55,13 @@ namespace PasteProperty
             await ConvertSelectedToPropertyCommand.InitializeAsync(this);
             await ConvertSelectedToFieldCommand.InitializeAsync(this);
             await ConvertSelectedToPrivateFieldCommand.InitializeAsync(this);
+            await CopyValue1Command.InitializeAsync(this, _valueRepository);
+            await PasteFieldCommand.InitializeAsync(this, _valueRepository);
+
+
         }
+
+
 
         #endregion
     }
