@@ -4,6 +4,7 @@
         <Identity Id="PasteProperty.534987b4-5323-4915-920f-b2fdf96d1d62" Version="1.1" Language="en-US" Publisher="Eliseev Eugene" />
         <DisplayName>PasteProperty</DisplayName>
         <Description xml:space="preserve">Paste string value as Property/field/_privateField </Description>
+        <Icon>Resources\Logo.png</Icon>
         <Preview>true</Preview>
     </Metadata>
     <Installation>
