@@ -80,6 +80,7 @@
           <ButtonText>Convert to: field</ButtonText>
         </Strings>
       </Button>
+      
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPrivateFieldCommand" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
@@ -95,15 +96,66 @@
           <ButtonText>Copy 1</ButtonText>
         </Strings>
       </Button>
-
-      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPasteFieldCommand" priority="0x0100" type="Button">
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue2Command" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
         <Strings>
-          <ButtonText>Paste</ButtonText>
+          <ButtonText>Copy 2</ButtonText>
         </Strings>
       </Button>
-      
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue3Command" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="privateField" />
+        <Strings>
+          <ButtonText>Copy 3</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition1Command" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="privateField" />
+        <Strings>
+          <ButtonText>Select 1</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition2Command" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="privateField" />
+        <Strings>
+          <ButtonText>Select 2</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition3Command" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="privateField" />
+        <Strings>
+          <ButtonText>Select 3</ButtonText>
+        </Strings>
+      </Button>
+
+
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPropertyCommand" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="property" />
+        <Strings>
+          <ButtonText>Paste Property</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPasteFieldCommand" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="field" />
+        <Strings>
+          <ButtonText>Paste field</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPastePrivateFieldCommand" priority="0x0100" type="Button">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Icon guid="guidImages" id="privateField" />
+        <Strings>
+          <ButtonText>Paste _privateField</ButtonText>
+        </Strings>
+      </Button>
+
 
     </Buttons>  
     
@@ -119,13 +171,22 @@
   </Commands>
 
   <KeyBindings>
-    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPropertyCommand" key1="Q" mod1="ALT" editor="guidVSStd97" />
-    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToFieldCommand" key1="W" mod1="ALT" editor="guidVSStd97" />
-    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPrivateFieldCommand" key1="E" mod1="ALT" editor="guidVSStd97" />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPropertyCommand" key1="A" mod1="ALT" editor="guidVSStd97" />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToFieldCommand" key1="S" mod1="ALT" editor="guidVSStd97" />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPrivateFieldCommand" key1="D" mod1="ALT" editor="guidVSStd97" />
+
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidPropertyCommand" key1="Q" mod1="ALT" editor="guidVSStd97" />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidPasteFieldCommand" key1="W" mod1="ALT" editor="guidVSStd97" />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidPastePrivateFieldCommand" key1="E" mod1="ALT" editor="guidVSStd97" />
 
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue1Command" key1="C" key2="1" mod1="ALT"  editor="guidVSStd97"  />
-  </KeyBindings>
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue2Command" key1="C" key2="2" mod1="ALT"  editor="guidVSStd97"  />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue3Command" key1="C" key2="3" mod1="ALT"  editor="guidVSStd97"  />
 
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition1Command" key1="1" mod1="ALT"  editor="guidVSStd97"  />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition2Command" key1="2" mod1="ALT"  editor="guidVSStd97"  />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition3Command" key1="3" mod1="ALT"  editor="guidVSStd97"  />
+  </KeyBindings>
 
   <Symbols>
     <!-- This is the package guid. -->
@@ -141,9 +202,18 @@
       <IDSymbol value="4129" name="cmdidConvertSelectedToPropertyCommand" />
       <IDSymbol value="4130" name="cmdidConvertSelectedToFieldCommand" />
       <IDSymbol value="4131" name="cmdidConvertSelectedToPrivateFieldCommand" />
+      
       <IDSymbol value="4132" name="cmdidCopyValue1Command" />
+      <IDSymbol value="4133" name="cmdidCopyValue2Command" />
+      <IDSymbol value="4134" name="cmdidCopyValue3Command" />
 
       <IDSymbol value="4140" name="cmdidPasteFieldCommand" />
+      <IDSymbol value="4141" name="cmdidPastePrivateFieldCommand" />
+      <IDSymbol value="4142" name="cmdidPropertyCommand" />
+
+      <IDSymbol value="4150" name="cmdidSelectPosition1Command" />
+      <IDSymbol value="4151" name="cmdidSelectPosition2Command" />
+      <IDSymbol value="4152" name="cmdidSelectPosition3Command" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{fad06ec7-7d39-4385-85f8-a380cea032b2}">

@@ -56,9 +56,16 @@ namespace PasteProperty
             await ConvertSelectedToFieldCommand.InitializeAsync(this);
             await ConvertSelectedToPrivateFieldCommand.InitializeAsync(this);
             await CopyValue1Command.InitializeAsync(this, _valueRepository);
+            await CopyValue2Command.InitializeAsync(this, _valueRepository);
+            await CopyValue3Command.InitializeAsync(this, _valueRepository);
+
             await PasteFieldCommand.InitializeAsync(this, _valueRepository);
+            await PastePrivateFieldCommand.InitializeAsync(this, _valueRepository);
+            await PastePropertyCommand.InitializeAsync(this, _valueRepository);
 
-
+            await SelectValue1Command.InitializeAsync(this, _valueRepository);
+            await SelectValue2Command.InitializeAsync(this, _valueRepository);
+            await SelectValue3Command.InitializeAsync(this, _valueRepository);
         }
 
 

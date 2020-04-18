@@ -5,5 +5,6 @@
         string GetMainValue();
         string GetValue(int position);
         string SetValue(int position, string value); //fluent
+        void SelectPosition(int position);
     }
 }

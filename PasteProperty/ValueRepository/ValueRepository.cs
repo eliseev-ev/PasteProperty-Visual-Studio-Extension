@@ -17,6 +17,7 @@ namespace PasteProperty.ValueRepository
         {
             return _values[mainPosition];
         }
+
         public string GetValue(int position)
         {
             CheckPositionAndThrowExeption(position);
@@ -30,6 +31,12 @@ namespace PasteProperty.ValueRepository
             mainPosition = position;
             _values[position] = value;
             return value;
+        }
+
+        public void SelectPosition(int position)
+        {
+            CheckPositionAndThrowExeption(position);
+            mainPosition = position;
         }
 
         private void CheckPositionAndThrowExeption(int position)
