@@ -43,6 +43,10 @@
       <Group guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" priority="0x0602">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenu" />       
       </Group>
+
+      <Group guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenuGroup" priority="0x0602">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenu" />
+      </Group>
       
     </Groups>
 
@@ -56,6 +60,16 @@
           <ButtonText>Paste Property</ButtonText>          
         </Strings>
       </Menu>
+
+      <Menu guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenu" priority="0x0200" type="Menu">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Strings>
+          <ButtonText>Paste Property</ButtonText>
+        </Strings>
+      </Menu>
+
+
+
     </Menus>
     
     
@@ -90,21 +104,21 @@
       </Button>
       
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue1Command" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
         <Strings>
           <ButtonText>Copy 1</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue2Command" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
         <Strings>
           <ButtonText>Copy 2</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue3Command" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
         <Strings>
           <ButtonText>Copy 3</ButtonText>
@@ -198,7 +212,12 @@
       <IDSymbol name="CodeContextSubMenuGroup" value="0x1040" />
       <IDSymbol name="CodeContextSubMenu" value="0x1041" />
       <IDSymbol name="cmdidCodeContextSubMenuOpenCommand" value="0x1042" />
-      
+      <IDSymbol name="CodeContextSubCopyMenu" value="0x1043" />
+      <IDSymbol name="CodeContextSubCopyMenuGroup" value="0x1044" />
+
+
+
+
       <IDSymbol value="4129" name="cmdidConvertSelectedToPropertyCommand" />
       <IDSymbol value="4130" name="cmdidConvertSelectedToFieldCommand" />
       <IDSymbol value="4131" name="cmdidConvertSelectedToPrivateFieldCommand" />
