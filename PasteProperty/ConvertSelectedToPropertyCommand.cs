@@ -88,18 +88,26 @@ namespace PasteProperty
         /// <param name="e">Event args.</param>
         private void Execute(object sender, EventArgs e)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "ConvertSelectedToPropertyCommand";
+            DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            if (dte.ActiveDocument != null)
+            {
+                var selection = (TextSelection)dte.ActiveDocument.Selection;
+                string text = selection.Text;
+
+                text.Trim();
+
+                if (text.Length < 2)
+                    return;
+
+                if (text[0] == '_')
+                {
+                    text = text.Substring(1);
+                }
+                text = char.ToUpper(text[0]) + text.Substring(1);
+
+                selection.Text = text;
+            }
         }
     }
 }
