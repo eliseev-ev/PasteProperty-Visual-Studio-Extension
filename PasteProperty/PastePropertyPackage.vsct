@@ -36,45 +36,61 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidPastePropertyPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      <Group guid="guidPastePropertyPackageCmdSet" id="CodeContextMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
       </Group>
+      
+      <Group guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" priority="0x0602">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenu" />
+      </Group>
+      
     </Groups>
 
+    <!-- Контекстное меню -->
+
+    <!-- Code context menu -->
+    <Menus>
+      <Menu guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenu" priority="0x0200" type="Menu">
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextMenuGroup" />
+        <Strings>
+          <ButtonText>PasteProperty</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+    
+    
     <!--Buttons section. -->
     <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
     <Buttons>
-      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
-          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
-          the CommandFlag node.
-          You can add more than one CommandFlag node e.g.:
-              <CommandFlag>DefaultInvisible</CommandFlag>
-              <CommandFlag>DynamicVisibility</CommandFlag>
-          If you do not want an image next to your command, remove the Icon node /> -->
+   
+
+
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPropertyCommand" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="MyMenuGroup" />
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke ConvertSelectedToPropertyCommand</ButtonText>
+          <ButtonText>Convert to: Property</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToFieldCommand" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="MyMenuGroup" />
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages1" id="bmpPic2" />
         <Strings>
-          <ButtonText>Invoke ConvertSelectedToFieldCommand</ButtonText>
+          <ButtonText>Convert to: field</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPrivateFieldCommand" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="MyMenuGroup" />
+        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages2" id="bmpPicSearch" />
         <Strings>
-          <ButtonText>Invoke ConvertSelectedToPrivateFieldCommand</ButtonText>
+          <ButtonText>Convert to: _privateField</ButtonText>
         </Strings>
       </Button>
-    </Buttons>
 
+
+    </Buttons>  
+    
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
     <Bitmaps>
       <!--  The bitmap id is defined in a way that is a little bit different from the others:
@@ -86,7 +102,17 @@
       <Bitmap guid="guidImages1" href="Resources\ConvertSelectedToFieldCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
       <Bitmap guid="guidImages2" href="Resources\ConvertSelectedToPrivateFieldCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
     </Bitmaps>
+
+    
+
+    
   </Commands>
+  
+  <CommandPlacements>
+    <CommandPlacement guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToFieldCommand"  priority="0x0100">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>      
+    </CommandPlacement>    
+  </CommandPlacements>
 
   <Symbols>
     <!-- This is the package guid. -->
@@ -94,7 +120,11 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidPastePropertyPackageCmdSet" value="{bf5a8902-3958-497d-b07a-2dae843b50b1}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="CodeContextMenuGroup" value="0x1020" />
+      <IDSymbol name="CodeContextSubMenuGroup" value="0x1040" />
+      <IDSymbol name="CodeContextSubMenu" value="0x1041" />
+      <IDSymbol name="cmdidCodeContextSubMenuOpenCommand" value="0x1042" />
+      
       <IDSymbol value="4129" name="cmdidConvertSelectedToPropertyCommand" />
       <IDSymbol value="4130" name="cmdidConvertSelectedToFieldCommand" />
       <IDSymbol value="4131" name="cmdidConvertSelectedToPrivateFieldCommand" />

@@ -103,7 +103,7 @@ namespace PasteProperty
 
                 if (text[0] == '_')
                 {
-                    text = '_' + char.ToLower(text[1]) + text.Substring(2);
+                    text = "_" + char.ToLower(text[1]) + text.Substring(2);
                 }
                 else
                 {
