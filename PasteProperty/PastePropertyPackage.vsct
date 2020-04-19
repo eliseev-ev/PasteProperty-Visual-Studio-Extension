@@ -104,23 +104,26 @@
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPropertyCommand" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages" id="property" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>Convert to: Property</ButtonText>
+          <ButtonText>Convert to Property</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToFieldCommand" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages" id="field" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>Convert to: field</ButtonText>
+          <ButtonText>Convert to field</ButtonText>
         </Strings>
       </Button>
       
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidConvertSelectedToPrivateFieldCommand" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>Convert to: _privateField</ButtonText>      
+          <ButtonText>Convert to _privateField</ButtonText>      
         </Strings>
       </Button>
       

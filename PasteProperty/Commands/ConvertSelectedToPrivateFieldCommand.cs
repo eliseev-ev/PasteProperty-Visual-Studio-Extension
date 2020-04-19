@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using PasteProperty.Common.Extentions;
 using Task = System.Threading.Tasks.Task;
 
 namespace PasteProperty
@@ -30,6 +31,9 @@ namespace PasteProperty
         /// </summary>
         private readonly AsyncPackage package;
 
+
+        private readonly OleMenuCommand _myCommand;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertSelectedToPrivateFieldCommand.cs"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
@@ -42,8 +46,9 @@ namespace PasteProperty
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
-            commandService.AddCommand(menuItem);
+            _myCommand = new OleMenuCommand(this.Execute, menuCommandID);
+            _myCommand.BeforeQueryStatus += (_, __) => { ChangeText(); };
+            commandService.AddCommand(_myCommand);
         }
 
         /// <summary>
@@ -96,20 +101,27 @@ namespace PasteProperty
                 var selection = (TextSelection)dte.ActiveDocument.Selection;
                 string text = selection.Text;
 
-                text.Trim();
+                selection.Text = text.ToPrivateField();
 
-                if (text.Length < 2)
-                    return;
+            }
+        }
 
-                if (text[0] == '_')
+
+        private void ChangeText()
+        {
+            DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
+
+            if (dte.ActiveDocument != null)
+            {
+                var selection = (TextSelection)dte.ActiveDocument.Selection;
+                string text = selection.Text;
+
+                if (text.Length > 20)
                 {
-                    text = "_" + char.ToLower(text[1]) + text.Substring(2);
+                    text = text.Substring(0, 20);
                 }
-                else
-                {
-                    text = "_" + char.ToLower(text[0]) + text.Substring(1);
-                }
-                selection.Text = text;
+
+                _myCommand.Text = $"Convert \"{text.ToPrivateField()}\"";
 
             }
         }

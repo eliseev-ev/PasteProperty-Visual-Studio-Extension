@@ -2,7 +2,9 @@
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace PasteProperty
@@ -37,6 +39,8 @@ namespace PasteProperty
         #region Package Members
 
         ValueRepository _valueRepository = new ValueRepository();
+
+
 
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
