@@ -9,7 +9,6 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using PasteProperty.Common;
 using PasteProperty.Common.Extentions;
-using PasteProperty.ValueRepository;
 using Task = System.Threading.Tasks.Task;
 
 namespace PasteProperty
@@ -35,7 +34,9 @@ namespace PasteProperty
         private readonly AsyncPackage package;
 
 
-        private IValueRepository _valueRepository;
+        private readonly ValueRepository _valueRepository;
+        private readonly OleMenuCommand _myCommand;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertSelectedToFieldCommand"/> class.
@@ -43,15 +44,17 @@ namespace PasteProperty
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private PastePrivateFieldCommand(AsyncPackage package, OleMenuCommandService commandService, IValueRepository valueRepository)
+        private PastePrivateFieldCommand(AsyncPackage package, OleMenuCommandService commandService, ValueRepository valueRepository)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
-            commandService.AddCommand(menuItem);
+            _myCommand = new OleMenuCommand(this.Execute, menuCommandID);
+
+            commandService.AddCommand(_myCommand);
             _valueRepository = valueRepository;
+            _valueRepository.ValuesChangedEvent += ChangeText;
         }
 
         /// <summary>
@@ -78,7 +81,7 @@ namespace PasteProperty
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static async Task InitializeAsync(AsyncPackage package, IValueRepository valueRepository)
+        public static async Task InitializeAsync(AsyncPackage package, ValueRepository valueRepository)
         {
             // Switch to the main thread - the call to AddCommand in ConvertSelectedToFieldCommand's constructor requires
             // the UI thread.
@@ -104,5 +107,14 @@ namespace PasteProperty
             var selection = (TextSelection)dte.ActiveDocument.Selection;
             selection.Text = selection.Text + value;         
         }
+
+        private void ChangeText()
+        {
+            var pastedValue = _valueRepository.GetMainValue().ToPrivateField();
+            if (pastedValue.Length > 20) { pastedValue = pastedValue.Substring(0, 20); }
+            _myCommand.Text = $"Paste \"{pastedValue}\"";
+        }
+
+
     }
 }

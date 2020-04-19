@@ -61,8 +61,7 @@
     <Compile Include="Commands\ConvertSelectedToPropertyCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PastePropertyPackage.cs" />
-    <Compile Include="ValueRepository\IValueRepository.cs" />
-    <Compile Include="ValueRepository\ValueRepository.cs" />
+    <Compile Include="ValueRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

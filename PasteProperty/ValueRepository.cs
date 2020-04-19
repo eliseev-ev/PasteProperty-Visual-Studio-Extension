@@ -1,27 +1,41 @@
 ﻿
+using Microsoft.VisualStudio.Debugger.Interop;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PasteProperty.ValueRepository
+namespace PasteProperty
 {
-    public class ValueRepository : IValueRepository
+    public class ValueRepository 
     {
 
-        string[] _values = new string[4];
-        int mainPosition = 0;
+        private ObservableCollection<string> _values = new ObservableCollection<string>()
+        {
+            "","","",""
+        };
+
+        public delegate void ValuesChangedHandler();
+        public event ValuesChangedHandler ValuesChangedEvent;
+
+        public ValueRepository()
+        {
+            _values.CollectionChanged += (_, __) => { ValuesChangedEvent.Invoke(); };
+        }
+
+
+       int mainPosition = 0;
 
         public string GetMainValue()
         {
-            return _values[mainPosition];
+                return _values[mainPosition];
         }
 
         public string GetValue(int position)
         {
             CheckPositionAndThrowExeption(position);
-            mainPosition = position;
             return _values[position];
         }
 
@@ -39,10 +53,14 @@ namespace PasteProperty.ValueRepository
             mainPosition = position;
         }
 
+       
+
         private void CheckPositionAndThrowExeption(int position)
         {
-            if (position < 0 || position >= _values.Length)
+            if (position < 0 || position >= _values.Count)
                 throw new IndexOutOfRangeException();
         }
+
+
     }
 }

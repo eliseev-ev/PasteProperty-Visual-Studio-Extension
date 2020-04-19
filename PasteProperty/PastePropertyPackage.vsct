@@ -145,18 +145,21 @@
 
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition1Command" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubSelectMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
           <ButtonText>Select 1</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition2Command" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubSelectMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
           <ButtonText>Select 2</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition3Command" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubSelectMenuGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
           <ButtonText>Select 3</ButtonText>
         </Strings>
@@ -166,6 +169,7 @@
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPropertyCommand" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubPasteMenuGroup" />
         <Icon guid="guidImages" id="property" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
           <ButtonText>Paste Property</ButtonText>
         </Strings>
@@ -173,13 +177,15 @@
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPasteFieldCommand" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubPasteMenuGroup" />
         <Icon guid="guidImages" id="field" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
-          <ButtonText>Paste field</ButtonText>
-        </Strings>
+          <ButtonText>Paste field</ButtonText>          
+        </Strings>        
       </Button>
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidPastePrivateFieldCommand" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubPasteMenuGroup" />
         <Icon guid="guidImages" id="privateField" />
+        <CommandFlag>TextChanges</CommandFlag>
         <Strings>
           <ButtonText>Paste _privateField</ButtonText>
         </Strings>

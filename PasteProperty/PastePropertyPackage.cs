@@ -3,8 +3,6 @@ using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio.Shell;
-
-using PasteProperty.ValueRepository;
 using Task = System.Threading.Tasks.Task;
 
 namespace PasteProperty
@@ -38,7 +36,7 @@ namespace PasteProperty
 
         #region Package Members
 
-        IValueRepository _valueRepository = new ValueRepository.ValueRepository();
+        ValueRepository _valueRepository = new ValueRepository();
 
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
@@ -60,6 +58,7 @@ namespace PasteProperty
             await CopyValue3Command.InitializeAsync(this, _valueRepository);
 
             await PasteFieldCommand.InitializeAsync(this, _valueRepository);
+            
             await PastePrivateFieldCommand.InitializeAsync(this, _valueRepository);
             await PastePropertyCommand.InitializeAsync(this, _valueRepository);
 

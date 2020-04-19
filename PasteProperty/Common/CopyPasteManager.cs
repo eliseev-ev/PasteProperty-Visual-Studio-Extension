@@ -1,7 +1,7 @@
 ﻿using EnvDTE;
 using Microsoft.Build.Tasks;
 using Microsoft.VisualStudio.Shell;
-using PasteProperty.ValueRepository;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace PasteProperty.Common
 {
     public static class CopyPasteManager
     {
-        public static void CopySelected(IValueRepository valueRepository, int position)
+        public static void CopySelected(ValueRepository valueRepository, int position)
         {
             DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
 
