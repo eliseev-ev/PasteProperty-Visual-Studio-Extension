@@ -105,13 +105,13 @@ namespace PasteProperty
             DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
 
             var selection = (TextSelection)dte.ActiveDocument.Selection;
-            selection.Text = selection.Text + value;         
+            selection.Text = value;         
         }
 
         private void ChangeText()
         {
-            var pastedValue = _valueRepository.GetMainValue().ToPrivateField();
-            if (pastedValue.Length > 20) { pastedValue = pastedValue.Substring(0, 20); }
+            var pastedValue = _valueRepository.GetMainValue().Trim().ToPrivateField();
+            if (pastedValue.Length > 20) { pastedValue = pastedValue.Substring(0, 15) + "..."; }
             _myCommand.Text = $"Paste \"{pastedValue}\"";
         }
 

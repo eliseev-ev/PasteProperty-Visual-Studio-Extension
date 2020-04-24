@@ -24,8 +24,5 @@ namespace PasteProperty.Common
                 valueRepository.SetValue(position, text);
             }
         }
-
-
-
     }
 }
