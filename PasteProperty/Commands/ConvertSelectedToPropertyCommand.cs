@@ -114,13 +114,7 @@ namespace PasteProperty
                 var selection = (TextSelection)dte.ActiveDocument.Selection;
                 string text = selection.Text;
 
-                if (text.Length > 20)
-                {
-                    text = text.Substring(0, 20);
-                }
-
-                _myCommand.Text = $"Convert \"{text.ToProperty()}\"";
-
+                _myCommand.Text = $"Convert \"{text.ToShortString().ToProperty()}\"";
             }
         }
     }

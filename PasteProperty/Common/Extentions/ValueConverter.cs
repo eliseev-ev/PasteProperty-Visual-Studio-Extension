@@ -9,7 +9,7 @@
                 return "";
             }
 
-            value.Trim();
+            value = value.Trim();
 
             if (value[0] == '_')
             {
@@ -27,7 +27,7 @@
                 return "";
             }
 
-            value.Trim();
+            value = value.Trim();
 
             if (value[0] == '_')
             {
@@ -48,7 +48,7 @@
                 return "";
             }
 
-            value.Trim();
+            value = value.Trim();
 
             if (value[0] == '_')
             {

@@ -106,9 +106,7 @@ namespace PasteProperty
             DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
 
             var selection = (TextSelection)dte.ActiveDocument.Selection;
-            selection.Text = value;
-
-            
+            selection.Text = value;           
         }
 
 
@@ -118,7 +116,5 @@ namespace PasteProperty
             if (pastedValue.Length > 20) { pastedValue = pastedValue.Substring(0, 15) + "..."; }
             _myCommand.Text = $"Paste \"{pastedValue}\"";
         }
-
-
     }
 }

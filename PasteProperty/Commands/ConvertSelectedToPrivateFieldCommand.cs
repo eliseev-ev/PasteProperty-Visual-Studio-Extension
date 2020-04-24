@@ -116,12 +116,7 @@ namespace PasteProperty
                 var selection = (TextSelection)dte.ActiveDocument.Selection;
                 string text = selection.Text;
 
-                if (text.Length > 20)
-                {
-                    text = text.Substring(0, 20);
-                }
-
-                _myCommand.Text = $"Convert \"{text.ToPrivateField()}\"";
+                _myCommand.Text = $"Convert \"{text.ToShortString().ToPrivateField()}\"";
 
             }
         }
