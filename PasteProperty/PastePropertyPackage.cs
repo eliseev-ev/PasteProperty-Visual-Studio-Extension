@@ -5,6 +5,7 @@ using System.Threading;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using PasteProperty.Common;
 using Task = System.Threading.Tasks.Task;
 
 namespace PasteProperty
@@ -25,6 +26,7 @@ namespace PasteProperty
         #region Package Members
 
         ValueRepository _valueRepository = new ValueRepository();
+        InsertableList<string> _values = new InsertableList<string>(5);
 
 
         /// <summary>
@@ -40,21 +42,21 @@ namespace PasteProperty
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            await ConvertSelectedToPropertyCommand.InitializeAsync(this);
-            await ConvertSelectedToFieldCommand.InitializeAsync(this);
-            await ConvertSelectedToPrivateFieldCommand.InitializeAsync(this);
-            await CopyValue1Command.InitializeAsync(this, _valueRepository);
-            await CopyValue2Command.InitializeAsync(this, _valueRepository);
-            await CopyValue3Command.InitializeAsync(this, _valueRepository);
 
-            await PasteFieldCommand.InitializeAsync(this, _valueRepository);
+            await ConvertSelectedToPropertyCommand.InitializeAsync(this, _values);
+            await ConvertSelectedToFieldCommand.InitializeAsync(this, _values);
+            await ConvertSelectedToPrivateFieldCommand.InitializeAsync(this, _values);
             
-            await PastePrivateFieldCommand.InitializeAsync(this, _valueRepository);
-            await PastePropertyCommand.InitializeAsync(this, _valueRepository);
+            await CopyValue1Command.InitializeAsync(this, _values);
+    
+            await PasteFieldCommand.InitializeAsync(this, _values);
+            
+            await PastePrivateFieldCommand.InitializeAsync(this, _values);
+            await PastePropertyCommand.InitializeAsync(this, _values);
 
-            await SelectValue1Command.InitializeAsync(this, _valueRepository);
-            await SelectValue2Command.InitializeAsync(this, _valueRepository);
-            await SelectValue3Command.InitializeAsync(this, _valueRepository);
+            await SelectValue1Command.InitializeAsync(this, _values);
+            await SelectValue2Command.InitializeAsync(this, _values);
+            await SelectValue3Command.InitializeAsync(this, _values);
         }
 
 

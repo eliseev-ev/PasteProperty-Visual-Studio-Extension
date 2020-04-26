@@ -33,7 +33,7 @@ namespace PasteProperty
         private readonly AsyncPackage package;
 
 
-        private ValueRepository _valueRepository;
+        private readonly InsertableList<string> _values;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertSelectedToFieldCommand"/> class.
@@ -41,7 +41,7 @@ namespace PasteProperty
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private CopyValue1Command(AsyncPackage package, OleMenuCommandService commandService, ValueRepository valueRepository)
+        private CopyValue1Command(AsyncPackage package, OleMenuCommandService commandService, InsertableList<string> values)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -49,7 +49,7 @@ namespace PasteProperty
             var menuCommandID = new CommandID(CommandSet, CommandId);
             var menuItem = new MenuCommand(this.Execute, menuCommandID);
             commandService.AddCommand(menuItem);
-            _valueRepository = valueRepository;
+            _values = values;
         }
 
         /// <summary>
@@ -76,14 +76,14 @@ namespace PasteProperty
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static async Task InitializeAsync(AsyncPackage package, ValueRepository valueRepository)
+        public static async Task InitializeAsync(AsyncPackage package, InsertableList<string> values)
         {
             // Switch to the main thread - the call to AddCommand in ConvertSelectedToFieldCommand's constructor requires
             // the UI thread.
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new CopyValue1Command(package, commandService, valueRepository);       
+            Instance = new CopyValue1Command(package, commandService, values);       
         }
 
         /// <summary>
@@ -95,7 +95,16 @@ namespace PasteProperty
         /// <param name="e">Event args.</param>
         private void Execute(object sender, EventArgs e)
         {
-            CopyPasteManager.CopySelected(_valueRepository, 0);
+            DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
+
+            if (dte.ActiveDocument != null)
+            {
+                var selection = (TextSelection)dte.ActiveDocument.Selection;
+                string text = selection.Text;
+
+                _values.Insert(text);
+            }
+
         }
     }
 }

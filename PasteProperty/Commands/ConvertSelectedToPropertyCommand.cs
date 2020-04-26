@@ -4,8 +4,10 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using EnvDTE;
+using Microsoft.VisualStudio.Debugger.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using PasteProperty.Common;
 using PasteProperty.Common.Extentions;
 using Task = System.Threading.Tasks.Task;
 
@@ -31,6 +33,8 @@ namespace PasteProperty
         /// </summary>
         private readonly AsyncPackage package;
 
+        InsertableList<string> _values;
+
 
         private readonly OleMenuCommand _myCommand;
 
@@ -40,7 +44,7 @@ namespace PasteProperty
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private ConvertSelectedToPropertyCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private ConvertSelectedToPropertyCommand(AsyncPackage package, OleMenuCommandService commandService, InsertableList<string> values)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -49,6 +53,7 @@ namespace PasteProperty
             _myCommand = new OleMenuCommand(this.Execute, menuCommandID);
             _myCommand.BeforeQueryStatus += (_, __) => { ChangeText(); };
             commandService.AddCommand(_myCommand);
+            _values = values;
         }
 
         /// <summary>
@@ -75,14 +80,14 @@ namespace PasteProperty
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(AsyncPackage package, InsertableList<string> values)
         {
             // Switch to the main thread - the call to AddCommand in ConvertSelectedToPropertyCommand's constructor requires
             // the UI thread.
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new ConvertSelectedToPropertyCommand(package, commandService);
+            Instance = new ConvertSelectedToPropertyCommand(package, commandService, values);
         }
 
         /// <summary>
@@ -100,7 +105,7 @@ namespace PasteProperty
             {
                 var selection = (TextSelection)dte.ActiveDocument.Selection;
                 string text = selection.Text;
-
+                _values.Insert(text);
                 selection.Text = text.ToProperty();
             }
         }

@@ -32,9 +32,8 @@ namespace PasteProperty
         /// </summary>
         private readonly AsyncPackage package;
 
+        private readonly InsertableList<string> _values;
 
-
-        private readonly ValueRepository _valueRepository;
         private readonly OleMenuCommand _myCommand;
 
 
@@ -44,7 +43,7 @@ namespace PasteProperty
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private SelectValue3Command(AsyncPackage package, OleMenuCommandService commandService, ValueRepository valueRepository)
+        private SelectValue3Command(AsyncPackage package, OleMenuCommandService commandService, InsertableList<string> values)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -54,8 +53,8 @@ namespace PasteProperty
 
             commandService.AddCommand(_myCommand);
 
-            _valueRepository = valueRepository;
-            _valueRepository.ValuesChangedEvent += ChangeText;
+            _values = values;
+            _values.ValuesChangedEvent += ChangeText;
         }
 
         /// <summary>
@@ -82,14 +81,14 @@ namespace PasteProperty
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static async Task InitializeAsync(AsyncPackage package, ValueRepository valueRepository)
+        public static async Task InitializeAsync(AsyncPackage package, InsertableList<string> values)
         {
             // Switch to the main thread - the call to AddCommand in ConvertSelectedToFieldCommand's constructor requires
             // the UI thread.
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new SelectValue3Command(package, commandService, valueRepository);       
+            Instance = new SelectValue3Command(package, commandService, values);       
         }
 
         /// <summary>
@@ -101,14 +100,17 @@ namespace PasteProperty
         /// <param name="e">Event args.</param>
         private void Execute(object sender, EventArgs e)
         {
-            _valueRepository.SelectPosition(2);
+            _values.SetMainIndex(2);
         }
 
         private void ChangeText()
         {
-            var pastedValue = _valueRepository.GetValue(2);
-            if (pastedValue.Length > 20) { pastedValue = pastedValue.Substring(0, 20); }
-            _myCommand.Text = $"Paste \"{pastedValue}\"";
+            var value = _values.Get(2);
+            if (value == null)
+                return;
+
+            if (value.Length > 20) { value = value.Substring(0, 20); }
+            _myCommand.Text = $"Select \"{value}\"";
         }
     }
 }

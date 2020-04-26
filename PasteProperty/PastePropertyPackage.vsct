@@ -130,19 +130,7 @@
       <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue1Command" priority="0x0100" type="Button">
         <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenuGroup" />
         <Strings>
-          <ButtonText>Copy 1</ButtonText>
-        </Strings>
-      </Button>
-      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue2Command" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenuGroup" />
-        <Strings>
-          <ButtonText>Copy 2</ButtonText>
-        </Strings>
-      </Button>
-      <Button guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue3Command" priority="0x0100" type="Button">
-        <Parent guid="guidPastePropertyPackageCmdSet" id="CodeContextSubCopyMenuGroup" />
-        <Strings>
-          <ButtonText>Copy 3</ButtonText>
+          <ButtonText>Copy</ButtonText>
         </Strings>
       </Button>
 
@@ -217,9 +205,7 @@
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidPasteFieldCommand" key1="W" mod1="ALT" editor="guidVSStd97" />
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidPastePrivateFieldCommand" key1="E" mod1="ALT" editor="guidVSStd97" />
 
-    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue1Command" key1="C" key2="1" mod1="ALT"  editor="guidVSStd97"  />
-    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue2Command" key1="C" key2="2" mod1="ALT"  editor="guidVSStd97"  />
-    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue3Command" key1="C" key2="3" mod1="ALT"  editor="guidVSStd97"  />
+    <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidCopyValue1Command" key1="C" mod1="ALT"  editor="guidVSStd97"  />
 
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition1Command" key1="1" mod1="ALT"  editor="guidVSStd97"  />
     <KeyBinding guid="guidPastePropertyPackageCmdSet" id="cmdidSelectPosition2Command" key1="2" mod1="ALT"  editor="guidVSStd97"  />
