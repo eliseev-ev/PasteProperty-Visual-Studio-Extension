@@ -48,8 +48,7 @@
     <Compile Include="Commands\SelectValue1Command.cs" />
     <Compile Include="Commands\SelectValue2Command.cs" />
     <Compile Include="Commands\SelectValue3Command.cs" />
-    <Compile Include="Common\InsertableList.cs" />
-    <Compile Include="Common\CopyPasteManager.cs" />
+    <Compile Include="Common\ClipBoardRepository.cs" />
     <Compile Include="Common\Extentions\StringHelper.cs" />
     <Compile Include="Common\Extentions\ValueConverter.cs" />
     <Compile Include="Commands\PastePropertyCommand.cs" />

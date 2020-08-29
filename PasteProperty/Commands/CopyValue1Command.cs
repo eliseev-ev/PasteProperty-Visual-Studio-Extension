@@ -33,7 +33,7 @@ namespace PasteProperty
         private readonly AsyncPackage package;
 
 
-        private readonly InsertableList<string> _values;
+        private readonly ClipBoardRepository _values;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertSelectedToFieldCommand"/> class.
@@ -41,7 +41,7 @@ namespace PasteProperty
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private CopyValue1Command(AsyncPackage package, OleMenuCommandService commandService, InsertableList<string> values)
+        private CopyValue1Command(AsyncPackage package, OleMenuCommandService commandService, ClipBoardRepository values)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -76,7 +76,7 @@ namespace PasteProperty
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static async Task InitializeAsync(AsyncPackage package, InsertableList<string> values)
+        public static async Task InitializeAsync(AsyncPackage package, ClipBoardRepository values)
         {
             // Switch to the main thread - the call to AddCommand in ConvertSelectedToFieldCommand's constructor requires
             // the UI thread.

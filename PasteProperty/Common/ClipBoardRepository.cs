@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace PasteProperty.Common
 {
-    public class InsertableList<T> where T : class
+    public class ClipBoardRepository
     {
-        private T[] _values;
+        private string[] _values;
         private int _mainIndex = 0;
  
         public delegate void ValuesChangedHandler();
         public event ValuesChangedHandler ValuesChangedEvent;
     
-        public InsertableList(int lenght)
+        public ClipBoardRepository(int lenght)
         {
-            _values = new T[lenght];
+            _values = new string[lenght];
         }
 
-        public T GetMain() => this.Get(_mainIndex);
+        public string GetMain() => this.Get(_mainIndex);
 
         public void SetMainIndex(int index)
         {
@@ -30,7 +30,7 @@ namespace PasteProperty.Common
             }
         }
 
-        public T this[int index]
+        public string this[int index]
         {
             get
             {                
@@ -38,13 +38,15 @@ namespace PasteProperty.Common
             }
         }
 
-        public T Get(int index)
+        public string Get(int index)
         {                
             return _values[index];
         }
 
-        public void Insert(T newVal)
+        public void Insert(string newVal)
         {
+            if (string.IsNullOrWhiteSpace(newVal))
+                return;
 
             for (int i = _values.Length - 1; i >= 0; i--)
             {

@@ -36,7 +36,7 @@ namespace PasteProperty
         private readonly OleMenuCommand _myCommand;
 
 
-        InsertableList<string> _values;
+        ClipBoardRepository _values;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertSelectedToPrivateFieldCommand.cs"/> class.
@@ -44,7 +44,7 @@ namespace PasteProperty
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private ConvertSelectedToPrivateFieldCommand(AsyncPackage package, OleMenuCommandService commandService, InsertableList<string> values)
+        private ConvertSelectedToPrivateFieldCommand(AsyncPackage package, OleMenuCommandService commandService, ClipBoardRepository values)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -80,7 +80,7 @@ namespace PasteProperty
         /// Initializes the singleton instance of the command.
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        public static async Task InitializeAsync(AsyncPackage package, InsertableList<string> values)
+        public static async Task InitializeAsync(AsyncPackage package, ClipBoardRepository values)
         {
             // Switch to the main thread - the call to AddCommand in ConvertSelectedToPrivateFieldCommand.cs's constructor requires
             // the UI thread.

@@ -26,7 +26,7 @@ namespace PasteProperty
         #region Package Members
 
         ValueRepository _valueRepository = new ValueRepository();
-        InsertableList<string> _values = new InsertableList<string>(5);
+        ClipBoardRepository _values = new ClipBoardRepository(5);
 
 
         /// <summary>
